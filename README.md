@@ -8,7 +8,6 @@ A barometer mod for
 which displays the actual heights and air pressures.
 
 # Overview
-- [Features](#features)
 - [Installing](#installing)
     - [BepInEx](#bepinex)
     - [MelonLoader](#melonloader)
