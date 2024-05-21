@@ -53,8 +53,8 @@ namespace BetterBarometer {
          */
         private static void PatchBarometerPressure(TypeDefinition barometer) {
             // Display the air pressure normally (kind of)
-            MethodDefinition update = barometer.FindMethod("Update");
-            Collection<Instruction> insts = update.Body.Instructions;
+            MethodDefinition start = barometer.FindMethod("Start");
+            Collection<Instruction> insts = start.Body.Instructions;
 
             string[][] seq = {
                 new string[] { "ldarg.0" },
