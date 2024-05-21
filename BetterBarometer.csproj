@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>BetterBarometer</RootNamespace>
+    <AssemblyName>BetterBarometer</AssemblyName>
+    <Version>0.1.0</Version>
+    <Description>A Peaks of Yore mod which displays the actual height and air pressure on the barometer</Description>
+    <Platform>Any CPU</Platform>
+    <Configurations>Debug-BepInEx;Release-BepInEx;Debug-MelonLoader;Release-MelonLoader</Configurations>
+    <Configuration Condition="'$(Configuration)' == ''">Debug-BepInEx</Configuration>
+    <IntermediateOutputPath>obj/$(Configuration)</IntermediateOutputPath>
+    <OutputPath>bin/$(Configuration.ToLower())/</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.StartsWith('Debug-'))">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.StartsWith('Release-'))">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.EndsWith('-BepInEx'))">
+    <DefineConstants>BEPINEX</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(Configuration.EndsWith('-MelonLoader'))">
+    <DefineConstants>MELONLOADER</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(Configuration.EndsWith('-BepInEx'))">
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+    <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="$(Configuration.EndsWith('-MelonLoader'))">
+    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.1"/>
+    <PackageReference Include="MonoMod.Utils" Version="22.5.1.1"/>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(OS)' == 'Unix'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all"/>
+  </ItemGroup>
+
+  <Target Name="CopyPackageAssembliesToSubFolder" AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths
+        Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != ''"
+        Update="$(ReferenceCopyLocalPaths)"
+        DestinationSubDirectory="libs/"/>
+    </ItemGroup>
+  </Target>
+</Project>
+<!-- vim: set et sw=2 ts=2 ft=xml: -->
