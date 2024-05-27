@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 
 
-#if BepInEx
+#if BEPINEX
 using BepInEx;
 
 namespace BetterBarometer {
@@ -20,7 +20,7 @@ namespace BetterBarometer {
         }
 
 
-#elif MelonLoader
+#elif MELONLOADER
 using MelonLoader;
 
 [assembly: MelonInfo(typeof(BetterBarometer.Plugin, "Better Barometer", "0.1.0", "Kaden5480"))]
@@ -31,36 +31,37 @@ namespace BetterBarometer {
 
 #endif
 
-    [HarmonyPatch(typeof(Barometer), "Update")]
-    static class PatchBarometerHeight {
-        static IEnumerable<CodeInstruction> Transpiler(
-            IEnumerable<CodeInstruction> insts
-        ) {
-            foreach (CodeInstruction inst in insts) {
-                if (inst.LoadsConstant(3.12f) || inst.LoadsConstant(3.125f)) {
-                    inst.operand = 1f;
-                }
+        [HarmonyPatch(typeof(Barometer), "Update")]
+        static class PatchBarometerHeight {
+            static IEnumerable<CodeInstruction> Transpiler(
+                IEnumerable<CodeInstruction> insts
+            ) {
+                foreach (CodeInstruction inst in insts) {
+                    if (inst.LoadsConstant(3.12f) || inst.LoadsConstant(3.125f)) {
+                        inst.operand = 1f;
+                    }
 
-                yield return inst;
+                    yield return inst;
+                }
             }
         }
-    }
 
-    [HarmonyPatch(typeof(Barometer), "Start")]
-    static class PatchBarometerPressure {
-        static IEnumerable<CodeInstruction> Transpiler(
-            IEnumerable<CodeInstruction> insts
-        ) {
-            foreach (CodeInstruction inst in insts) {
-                if (inst.LoadsConstant(8200f)) {
-                    inst.operand = 5400f;
+        [HarmonyPatch(typeof(Barometer), "Start")]
+        static class PatchBarometerPressure {
+            static IEnumerable<CodeInstruction> Transpiler(
+                IEnumerable<CodeInstruction> insts
+            ) {
+                foreach (CodeInstruction inst in insts) {
+                    if (inst.LoadsConstant(8200f)) {
+                        inst.operand = 5400f;
+                    }
+
+                    if (inst.LoadsConstant(6000f)) {
+                        inst.operand = 5000f;
+                    }
+
+                    yield return inst;
                 }
-
-                if (inst.LoadsConstant(6000f)) {
-                    inst.operand = 5000f;
-                }
-
-                yield return inst;
             }
         }
     }

@@ -36,7 +36,7 @@
 
   <PropertyGroup Condition="'$(GamePath)' == ''">
     <GamePath Condition="'$(OS)' == 'Unix'">$(HOME)/.local/share/Steam/steamapps/common/Peaks of Yore</GamePath>
-    <GamePath Condition="'$(OS)' == 'Windows_NT'">C:/Program Files (x86)/Steam/steamapps/common/Peaks of Yore</GamePath
+    <GamePath Condition="'$(OS)' == 'Windows_NT'">C:/Program Files (x86)/Steam/steamapps/common/Peaks of Yore</GamePath>
   </PropertyGroup>
 
   <PropertyGroup>
