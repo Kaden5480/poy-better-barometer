@@ -16,17 +16,17 @@ ML_DIR="build/$ML_NAME"
 dotnet build -c Release-BepInEx
 dotnet build -c Release-MelonLoader
 
-mkdir -p "$BP_DIR"/patchers
-mkdir -p "$ML_DIR"/Plugins
+mkdir -p "$BP_DIR"/plugins
+mkdir -p "$ML_DIR"/Mods
 
 # BepInEx
 cp bin/release-bepinex/net472/*.dll \
-    "$BP_DIR/patchers/"
+    "$BP_DIR/plugins/"
 cp build/README-BepInEx.txt "$BP_DIR/README.txt"
 
 # MelonLoader
 cp bin/release-melonloader/net472/*.dll \
-    "$ML_DIR/Plugins/"
+    "$ML_DIR/Mods/"
 cp build/README-MelonLoader.txt "$ML_DIR/README.txt"
 
 # Zip everything
