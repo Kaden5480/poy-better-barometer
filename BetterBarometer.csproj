@@ -3,7 +3,7 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>BetterBarometer</RootNamespace>
     <AssemblyName>BetterBarometer</AssemblyName>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <Description>A Peaks of Yore mod which displays the actual height and air pressure on the barometer</Description>
     <Platform>Any CPU</Platform>
     <Configurations>Debug-BepInEx;Release-BepInEx;Debug-MelonLoader;Release-MelonLoader</Configurations>

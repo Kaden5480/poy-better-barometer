@@ -23,7 +23,7 @@ namespace BetterBarometer {
 #elif MELONLOADER
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(BetterBarometer.Plugin), "Better Barometer", "0.1.1", "Kaden5480")]
+[assembly: MelonInfo(typeof(BetterBarometer.Plugin), "Better Barometer", "0.2.0", "Kaden5480")]
 [assembly: MelonGame("TraipseWare", "Peaks of Yore")]
 
 namespace BetterBarometer {
@@ -37,7 +37,7 @@ namespace BetterBarometer {
                 IEnumerable<CodeInstruction> insts
             ) {
                 foreach (CodeInstruction inst in insts) {
-                    if (inst.LoadsConstant(3.12f) || inst.LoadsConstant(3.125f)) {
+                    if (inst.LoadsConstant(3.12f) || inst.LoadsConstant(3.125f) || inst.LoadsConstant(1.355f)) {
                         inst.operand = 1f;
                     }
 
