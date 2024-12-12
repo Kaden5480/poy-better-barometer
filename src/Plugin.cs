@@ -23,7 +23,7 @@ namespace BetterBarometer {
 #elif MELONLOADER
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(BetterBarometer.Plugin), "Better Barometer", "0.2.0", "Kaden5480")]
+[assembly: MelonInfo(typeof(BetterBarometer.Plugin), "Better Barometer", PluginInfo.PLUGIN_VERSION, "Kaden5480")]
 [assembly: MelonGame("TraipseWare", "Peaks of Yore")]
 
 namespace BetterBarometer {
